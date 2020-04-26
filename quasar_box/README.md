@@ -121,27 +121,57 @@ Faston 4.8mm female spade pair to Raspberry Pi PSU cable | 1
 #### GPIO Header to 8 Pin DIN Socket Cable
 
 This cable allows the Raspberry Pi’s GPIO connectors to be used with external hardware, for example as input for custom buttons or output to switch relays.
+The cable is made up of 10 female Dupont connectors, arranged in a 2x5 housing, which connect to the Raspberry Pi GPIO header.
+The other end of the cable is an 8 pin DIN socket which can be mounted to the outside of the box.
 
-DIN | Pysical | BCM
-----|---------|----
-1   | 35      | 19
-2   | 31      | 6
-3   | 36      | 16
-4   | 33      | 13
-5   | 32      | 12
-6   | 37      | 26
-7   | 38      | 20
-8   | 40      | 21
-GND | 34      | n/a
-GND | 39      | n/a
+This is wired like so:
+
+DIN | Physical | BCM
+----|----------|----
+1   | 35       | 19
+2   | 31       | 6
+3   | 36       | 16
+4   | 33       | 13
+5   | 32       | 12
+6   | 37       | 26
+7   | 38       | 20
+8   | 40       | 21
+GND | 34       | GND
+GND | 39       | GND
+
+This translates to the Dupont pins being arranged in the 2x5 housing as shown below (from top down view):
+
+DIN | BCM | Physical | Physical | BCM | DIN
+----|-----|----------|----------|-----|----
+2   | 6   | 31       | 32       | 12  | 5
+4   | 13  | 33       | 34       | GND | GND
+1   | 19  | 35       | 36       | 16  | 3
+6   | 26  | 37       | 38       | 20  | 7
+GND | GND | 39       | 40       | 21  | 8
+
+The easiest way to make this cable is to user a USB to USB header cable, as the USB header already has 10 Dupont pins in a 2x5 housing.
+The pins in the housing must be rearranged as shown in the table above so the location of the ground pins matches the Raspberry Pi.
+The USB connectors can then but cut off, the cable stripped and soldered onto an 8 pin DIN socket with heat shrink to prevent the dense connectors from touching and creating a short circuit.
 
 #### GPIO Header to Faston Female 4.8mm Spades
+
+This cable connects the green utility button to the Raspberry Pi's GPIO header pins.
+
+The green utility button has two circuits internally with four 4.8mm male spade connectors:
+A pair of these are connected when the button is pushed.
+The other pair is to power the buttons LED.
+
+The cable to connect these has four 4.8mm female spade connectors
+A pair of these are for the ground, with one chained from the other, for the button's two circuits.
+One connector then powers the button's LED, and the other is for input.
+
+The other end of the cable consists of 3 Dupont connectors wired like so:
 
 Function | Physical | BCM
 ---------|----------|-----
 INPUT    | 29       | 5
 OUTPUT   | 27       | 0
-GND      | 30       | n/a
+GND      | 30       | GND
 
 #### XLR 3 Pin Plug to XLR 3 Pin Socket Cable
 
